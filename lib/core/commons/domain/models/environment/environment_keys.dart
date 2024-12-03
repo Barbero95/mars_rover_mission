@@ -1,0 +1,4 @@
+enum EnvKeys {
+  environment,
+  baseUrl,
+}

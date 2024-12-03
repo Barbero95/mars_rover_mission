@@ -1,0 +1,3 @@
+class TemplateWidgets {
+  TemplateWidgets._();
+}

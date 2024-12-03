@@ -1,0 +1,3 @@
+class TemplateUIModel {
+  TemplateUIModel._();
+}
