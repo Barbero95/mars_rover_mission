@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/features/template/export_template.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mars_rover_mission/features/template/export_template.dart';
 
 class TemplateRoutes {
   TemplateRoutes._();

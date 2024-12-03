@@ -1,7 +1,7 @@
-import 'package:flutter_template/core/commons/domain/export_domain.dart';
-import 'package:flutter_template/core/commons/services/export_services.dart';
-import 'package:flutter_template/features/template/export_template.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mars_rover_mission/core/commons/domain/export_domain.dart';
+import 'package:mars_rover_mission/core/commons/services/export_services.dart';
+import 'package:mars_rover_mission/features/template/export_template.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 GetIt locator = GetIt.instance;
@@ -29,13 +29,6 @@ void _registerServices(EnvironmentConfig environmentConfig) {
           await SharedPreferences.getInstance();
       return SharedPreferencesService(sharedPref);
     })
-    ..registerSingletonAsync<TranslationsService>(
-      () async {
-        await TranslationsService().loadLanguageFromPrefs();
-        return TranslationsService();
-      },
-      dependsOn: [SharedPreferencesService],
-    )
     ..registerLazySingleton(NavigationService.new);
 }
 

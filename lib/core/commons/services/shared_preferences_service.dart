@@ -1,8 +1,6 @@
-import 'package:flutter_template/core/commons/services/translation/translations_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class _Keys {
-  static const String languageCode = 'languageCode';
   static String onBoardingShown = 'onBoardingShown';
   static String refreskToken = 'refreskToken';
   static String accessToken = 'accessToken';
@@ -21,18 +19,6 @@ class SharedPreferencesService {
 
   void setIsFirstTimeOpenApp(bool isFirstTime) =>
       _preferences.setBool(_Keys.openAppFirstTime, isFirstTime);
-
-// ==================== LANGUAGE METHODS ===================
-
-  // IMPORTANT: retuns ca, es & en
-  String getLanguageCode() =>
-      _preferences.getString(_Keys.languageCode) ??
-      TranslationsService.deviceLanguage.languageCode;
-
-  Future<void> setLanguageCode(String languageCode) async =>
-      _preferences.setString(_Keys.languageCode, languageCode);
-
-  // ==================== END LANGUAGE METHODS ===================
 
   Future<void> setOnBoardingSeen(bool value) async =>
       _preferences.setBool(_Keys.onBoardingShown, value);

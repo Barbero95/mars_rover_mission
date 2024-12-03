@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="flutter_template"
+        android:label="Mars Rover Mission"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

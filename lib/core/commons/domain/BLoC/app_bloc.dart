@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/commons/domain/models/export_models.dart';
+import 'package:mars_rover_mission/core/commons/domain/models/export_models.dart';
 
 class AppBloc {
   late final ValueNotifier<ThemeModel> _themeModel = ValueNotifier(

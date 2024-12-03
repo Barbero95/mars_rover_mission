@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:flutter_template/core/commons/domain/export_domain.dart';
-import 'package:flutter_template/core/commons/services/export_services.dart';
-import 'package:flutter_template/core/data/export_data.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http_interceptor.dart';
+import 'package:mars_rover_mission/core/commons/domain/export_domain.dart';
+import 'package:mars_rover_mission/core/commons/services/export_services.dart';
+import 'package:mars_rover_mission/core/data/export_data.dart';
 
 class Api {
   Api._();

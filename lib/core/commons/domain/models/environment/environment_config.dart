@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/core/commons/domain/models/environment/environment.dart';
+import 'package:mars_rover_mission/core/commons/domain/models/environment/environment.dart';
 
 class EnvironmentConfig {
   /// Type of flavor
