@@ -5,7 +5,7 @@ import 'package:mars_rover_mission/features/rover_control_panel/export_rover_con
 class RoverControlPanelRoutes {
   RoverControlPanelRoutes._();
 
-  static const roverControlPanel = '/';
+  static const roverControlPanel = '/rover-control-panel';
 
   static Widget _roverControlPanelRouteBuilder(
     BuildContext context,
