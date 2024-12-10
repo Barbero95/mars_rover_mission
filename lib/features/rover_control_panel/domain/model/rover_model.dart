@@ -52,14 +52,4 @@ class RoverModel {
       DirectionType.W => DirectionType.N,
     };
   }
-
-  bool isOutOfBounds({
-    required int columns,
-    required int rows,
-  }) {
-    return currentPosition.x < 0 ||
-        currentPosition.y < 0 ||
-        currentPosition.x >= columns ||
-        currentPosition.y >= rows;
-  }
 }

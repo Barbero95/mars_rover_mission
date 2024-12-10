@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mars_rover_mission/features/rover_control_panel/export_rover_control_panel.dart';
@@ -43,7 +44,16 @@ class SetupBloc {
     final columns = int.tryParse(_columnsTE.text.trim());
 
     if (rows is! int || columns is! int) {
-      // TODO(david): Show message
+      // TODO(david): Show error message
+      return;
+    }
+
+    final commandsParsed = _commandsTE.text.split('').map(
+          CommandType.fromText,
+        );
+
+    if (commandsParsed.any((command) => command == null)) {
+      // TODO(david): Show error message
       return;
     }
 
@@ -63,13 +73,13 @@ class SetupBloc {
         ),
         rover: RoverModel(
           currentPosition: PositionModel(
-            x: random.nextInt(columns) + 1,
-            y: random.nextInt(rows) + 1,
+            x: random.nextInt(columns),
+            y: random.nextInt(rows),
           ),
           currentDirection:
               DirectionType.values[random.nextInt(DirectionType.values.length)],
         ),
-        commands: [], // TODO(david): parse TE
+        commands: commandsParsed.whereNotNull().toList(),
         numberOfObstacles: numberOfObstacles,
       ),
     );

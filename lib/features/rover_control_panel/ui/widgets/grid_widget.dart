@@ -51,11 +51,6 @@ class GridWidget extends CustomPainter {
         canvas.drawRect(rect, gridPaint);
       }
     }
-
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      borderPaint,
-    );
     // ---------- End Grid ----------
 
     // ---------- Start Obstacles ----------
@@ -70,6 +65,13 @@ class GridWidget extends CustomPainter {
       }
     }
     // ---------- End Obstacles ----------
+
+    // ---------- Start Border ----------
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width, size.height),
+      borderPaint,
+    );
+    // ---------- End Border ---------
 
     // ---------- Start Rover ----------
     final roverX =

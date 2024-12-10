@@ -52,49 +52,97 @@ class _RoverControlPanelPageState extends State<RoverControlPanelPage> {
               HeaderWidget(
                 roverCPBloc: _roverCPBloc,
               ),
+              Spaces.verticalS(),
               Expanded(
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    final grid = _roverCPBloc.grid;
-                    final rover = _roverCPBloc.rover;
-                    final double cellSize = min(
-                      constraints.maxWidth / _roverCPBloc.grid.columns,
-                      constraints.maxHeight / _roverCPBloc.grid.rows,
-                    );
+                child: Center(
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      final grid = _roverCPBloc.grid;
+                      final rover = _roverCPBloc.rover;
+                      final double cellSize = min(
+                        (constraints.maxWidth - Spaces.spaceL) /
+                            _roverCPBloc.grid.columns,
+                        (constraints.maxHeight - Spaces.spaceL) /
+                            _roverCPBloc.grid.rows,
+                      );
 
-                    return Center(
-                      child: SizedBox(
-                        width: cellSize * grid.columns,
-                        height: cellSize * grid.rows,
-                        child: CustomPaint(
-                          painter: GridWidget(
-                            rows: grid.rows,
-                            columns: grid.columns,
-                            startOffset: grid.startOffset(
-                              rover.currentPosition,
-                            ),
-                            obstacles: _roverCPBloc.obstacles,
-                            rover: rover,
+                      return Center(
+                        child: IntrinsicWidth(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text('(0,0)'),
+                                  const Text('N'),
+                                  Text(
+                                    '(${_roverCPBloc.grid.visibleColumns},0)',
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  const Text('W'),
+                                  Container(
+                                    margin: const EdgeInsets.all(
+                                      Spaces.spaceXXS,
+                                    ),
+                                    width: (cellSize * grid.columns) -
+                                        Spaces.spaceL,
+                                    height:
+                                        (cellSize * grid.rows) - Spaces.spaceL,
+                                    child: CustomPaint(
+                                      painter: GridWidget(
+                                        rows: grid.rows,
+                                        columns: grid.columns,
+                                        startOffset: grid.startOffset(
+                                          rover.currentPosition,
+                                        ),
+                                        obstacles: _roverCPBloc.obstacles,
+                                        rover: rover,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text('E'),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('(0,${_roverCPBloc.grid.visibleRows})'),
+                                  const Text('S'),
+                                  Text(
+                                    '(${_roverCPBloc.grid.visibleColumns},${_roverCPBloc.grid.visibleRows})',
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
+              Spaces.verticalS(),
             ],
           );
         },
       ),
-      floatingActionButton: Column(
+      floatingActionButton: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           FloatingActionButton(
+            heroTag: 'zoomIn',
             onPressed: _roverCPBloc.zoomIn,
             child: const Icon(Icons.zoom_in),
           ),
-          Spaces.verticalXXS(),
+          Spaces.horizontalXXS(),
           FloatingActionButton(
+            heroTag: 'zoomOut',
             onPressed: _roverCPBloc.zoomOut,
             child: const Icon(Icons.zoom_out),
           ),

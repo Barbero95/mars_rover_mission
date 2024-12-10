@@ -12,18 +12,26 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      runSpacing: Spaces.spaceXXS,
-      spacing: Spaces.spaceXXS,
+    return Column(
       children: [
-        Text('Commands: ${roverCPBloc.commandsString}'),
-        ElevatedButton(
-          onPressed: () => roverCPBloc.enabledExecuteCommandsButton
-              ? roverCPBloc.processCommands(context)
-              : roverCPBloc.pauseProcessComands(),
-          child: Text(
-            roverCPBloc.enabledExecuteCommandsButton ? 'Start' : 'Pause',
-          ),
+        Wrap(
+          runSpacing: Spaces.spaceXXS,
+          spacing: Spaces.spaceXXS,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Text('Commands: ${roverCPBloc.commandsString}'),
+            ElevatedButton(
+              onPressed: () => roverCPBloc.enabledExecuteCommandsButton
+                  ? roverCPBloc.processCommands(context)
+                  : roverCPBloc.pauseProcessComands(),
+              child: Text(
+                roverCPBloc.enabledExecuteCommandsButton ? 'Start' : 'Pause',
+              ),
+            ),
+          ],
+        ),
+        Text(
+          'CurrentPosition: (x: ${roverCPBloc.rover.currentPosition.x}, y: ${roverCPBloc.rover.currentPosition.y})',
         ),
       ],
     );

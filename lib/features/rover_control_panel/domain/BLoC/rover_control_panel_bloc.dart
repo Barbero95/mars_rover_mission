@@ -39,10 +39,18 @@ class RoverControlPanelBloc {
     final random = Random();
     _obstacles = List.generate(
       numberOfObstacles,
-      (_) => PositionModel(
-        x: random.nextInt(_grid.columns),
-        y: random.nextInt(_grid.rows),
-      ),
+      (_) {
+        int x = random.nextInt(_grid.columns);
+        int y = random.nextInt(_grid.rows);
+        while (x != rover.currentPosition.x && y != rover.currentPosition.y) {
+          x = random.nextInt(_grid.columns);
+          y = random.nextInt(_grid.rows);
+        }
+        return PositionModel(
+          x: x,
+          y: y,
+        );
+      },
     );
   }
 
@@ -74,10 +82,7 @@ class RoverControlPanelBloc {
           _rover.turnRight();
       }
 
-      if (_rover.isOutOfBounds(
-        columns: _grid.columns,
-        rows: _grid.rows,
-      )) {
+      if (_isOutOfBounds(nextPosition)) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Movimiento fuera de límites: $nextPosition')),
         );
@@ -96,6 +101,13 @@ class RoverControlPanelBloc {
       _rover.moveForward(nextPosition);
       _screenState.value = ScreenState.idle;
     });
+  }
+
+  bool _isOutOfBounds(PositionModel nextPosition) {
+    return nextPosition.x < 0 ||
+        nextPosition.y < 0 ||
+        nextPosition.x >= _grid.columns ||
+        nextPosition.y >= _grid.rows;
   }
 
   void zoomIn() {
