@@ -1,3 +1,0 @@
-class TemplateModel {
-  TemplateModel();
-}
