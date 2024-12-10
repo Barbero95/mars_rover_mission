@@ -1,4 +1,4 @@
-package com.example.mars_rover_mission
+package com.mars_rover_mission
 
 import io.flutter.embedding.android.FlutterActivity
 
