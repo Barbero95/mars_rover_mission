@@ -4,10 +4,6 @@ import 'package:mars_rover_mission/core/commons/domain/export_domain.dart';
 import 'package:mars_rover_mission/core/commons/services/export_services.dart';
 import 'package:mars_rover_mission/core/commons/ui/styles/export_styles.dart';
 
-class _Strings {
-  static const appTitle = 'Mars Rover Mission';
-}
-
 Future<Widget> initializeApp(
   EnvironmentConfig environmentConfig,
 ) async {
@@ -36,7 +32,7 @@ class AppState extends State<App> {
       valueListenable: locator<AppBloc>().themeModel,
       builder: (context, themeModel, child) {
         return MaterialApp.router(
-          title: _Strings.appTitle,
+          title: locator<EnvironmentService>().appName,
           themeMode: themeModel.themeMode,
           theme: AppTheme.lightTheme(themeModel),
           darkTheme: AppTheme.darkTheme(themeModel),

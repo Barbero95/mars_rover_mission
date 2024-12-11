@@ -1,4 +1,4 @@
 enum EnvKeys {
   environment,
-  baseUrl,
+  appName,
 }

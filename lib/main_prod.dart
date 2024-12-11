@@ -4,8 +4,8 @@ import 'package:mars_rover_mission/core/commons/domain/models/environment/enviro
 import 'package:mars_rover_mission/core/commons/domain/models/environment/environment_keys.dart';
 import 'package:mars_rover_mission/main_shared.dart';
 
-class _Url {
-  static const String baseUrl = '';
+class _Constants {
+  static const appName = 'Mars Rover Mission';
 }
 
 Future<void> main() async {
@@ -14,7 +14,7 @@ Future<void> main() async {
       environment: Environment.prod,
       variables: {
         EnvKeys.environment.name: Environment.prod,
-        EnvKeys.baseUrl.name: _Url.baseUrl,
+        EnvKeys.appName.name: _Constants.appName,
       },
     ),
   );
