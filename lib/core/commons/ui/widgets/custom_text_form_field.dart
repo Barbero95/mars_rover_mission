@@ -4,8 +4,14 @@ import 'package:mars_rover_mission/core/commons/domain/enums/export_enums.dart';
 import 'package:mars_rover_mission/core/utils/upper_case_text_input_formatter.dart';
 
 class _Constants {
-  static const commandRegex = r'^[flrFLR]+$';
+  static const commandRegex = '[flrFLR]';
   static const defaultMaxLength = 25;
+}
+
+class _Strings {
+  static const defaultError = 'Fill field';
+  static const invalidNumberError = 'Enter a valid number';
+  static const invalidCommandError = 'Only the letters F, L, and R are allowed';
 }
 
 class CustomTextFormField extends StatelessWidget {
@@ -58,14 +64,14 @@ class CustomTextFormField extends StatelessWidget {
       ),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
-          return 'Fill field';
+          return _Strings.defaultError;
         }
         if (type.isNumber && int.tryParse(value) == null) {
-          return 'Enter a valid number';
+          return _Strings.invalidNumberError;
         }
         if (type.isCommand &&
             !RegExp(_Constants.commandRegex).hasMatch(value)) {
-          return 'Only the letters F, L, and R are allowed';
+          return _Strings.invalidCommandError;
         }
         return null;
       },

@@ -3,10 +3,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/core/commons/domain/export_domain.dart';
+import 'package:mars_rover_mission/core/utils/modal_utils.dart';
 import 'package:mars_rover_mission/features/rover_control_panel/export_rover_control_panel.dart';
+import 'package:sprintf/sprintf.dart';
 
 class _Constants {
   static const duration = Duration(seconds: 1);
+}
+
+class _Strings {
+  static const outOfBoundsError = 'Out-of-bounds movement:';
+  static const obstacleDetectError =
+      'Obstacle detected at %s.\nPlease enter the new commands to continue.';
 }
 
 class RoverControlPanelBloc {
@@ -80,21 +88,29 @@ class RoverControlPanelBloc {
       }
 
       if (_isOutOfBounds(nextPosition)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Movimiento fuera de límites: $nextPosition')),
+        ModalUtils.errorModal(
+          context: context,
+          description: '${_Strings.outOfBoundsError} $nextPosition',
         );
         pauseProcessComands();
         return;
       }
 
       if (_obstacles.contains(nextPosition)) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('¡Obstáculo detectado en $nextPosition!')),
+        ModalUtils.errorModal(
+          context: context,
+          description: sprintf(
+            _Strings.obstacleDetectError,
+            [
+              nextPosition.toString(),
+            ],
+          ),
         );
         pauseProcessComands();
         return;
       }
 
+      _commands.removeAt(0);
       _rover.moveForward(nextPosition);
       _screenState.value = ScreenState.idle;
     });

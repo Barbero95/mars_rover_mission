@@ -39,7 +39,7 @@ class GridWidget extends StatelessWidget {
                         Text('(${startOffset.dx},${startOffset.dy})'),
                         Text(DirectionType.N.name),
                         Text(
-                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns},${startOffset.dy})',
+                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns - 1},${startOffset.dy})',
                         ),
                       ],
                     ),
@@ -69,11 +69,11 @@ class GridWidget extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '(${startOffset.dx},${startOffset.dy + roverCPBloc.grid.visibleRows})',
+                          '(${startOffset.dx},${startOffset.dy + roverCPBloc.grid.visibleRows - 1})',
                         ),
                         Text(DirectionType.S.name),
                         Text(
-                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns},${startOffset.dy + roverCPBloc.grid.visibleRows})',
+                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns - 1},${startOffset.dy + roverCPBloc.grid.visibleRows - 1})',
                         ),
                       ],
                     ),

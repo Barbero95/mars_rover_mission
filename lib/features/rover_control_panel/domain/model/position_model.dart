@@ -26,7 +26,7 @@ class PositionModel {
   }
 
   @override
-  String toString() => 'PositionModel(x: $x, y: $y)';
+  String toString() => '(x: $x, y: $y)';
 
   @override
   bool operator ==(covariant PositionModel other) {
