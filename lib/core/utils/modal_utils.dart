@@ -3,6 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:mars_rover_mission/core/commons/domain/enums/export_enums.dart';
 import 'package:mars_rover_mission/core/commons/ui/widgets/export_widgets.dart';
 
+class _Constants {
+  static const commandsMaxLength = 50;
+}
+
 class _Strings {
   static const errorTitle = 'Ups!';
   static const closeButton = 'Close';
@@ -80,6 +84,7 @@ class ModalUtils {
                   label: _Strings.newCommands,
                   controller: commandsTE,
                   type: TextFormFieldType.command,
+                  maxLength: _Constants.commandsMaxLength,
                 ),
               ],
             ),

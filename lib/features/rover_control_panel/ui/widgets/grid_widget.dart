@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/core/commons/ui/styles/export_styles.dart';
 import 'package:mars_rover_mission/features/rover_control_panel/export_rover_control_panel.dart';
 
+class _Strings {
+  static const errorLoadGrid =
+      "Sorry, but the proportions of the grid are too unbalanced, and the panel can't be displayed correctly. Please try a different configuration.";
+}
+
 class GridWidget extends StatelessWidget {
   final RoverControlPanelBloc roverCPBloc;
 
@@ -21,10 +26,10 @@ class GridWidget extends StatelessWidget {
             final grid = roverCPBloc.grid;
             final rover = roverCPBloc.rover;
             final double cellSize = min(
-              (constraints.maxWidth - Spaces.spaceL) / roverCPBloc.grid.columns,
-              (constraints.maxHeight - Spaces.spaceL) / roverCPBloc.grid.rows,
+              (constraints.maxWidth - Spaces.spaceL) / grid.columns,
+              (constraints.maxHeight - Spaces.spaceL) / grid.rows,
             );
-            final startOffset = grid.startOffset(
+            final (startOffsetX, startOffsetY, startOffset) = grid.startOffset(
               rover.currentPosition,
             );
 
@@ -33,50 +38,65 @@ class GridWidget extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('(${startOffset.dx},${startOffset.dy})'),
-                        Text(DirectionType.N.name),
-                        Text(
-                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns - 1},${startOffset.dy})',
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(DirectionType.W.name),
-                        Container(
-                          margin: const EdgeInsets.all(
-                            Spaces.spaceXXS,
+                    if ((cellSize * grid.columns) - Spaces.spaceL > 0 &&
+                        (cellSize * grid.rows) - Spaces.spaceL > 0) ...[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('($startOffsetX,$startOffsetY)'),
+                          Text(DirectionType.N.name),
+                          Text(
+                            '(${startOffsetX + grid.visibleColumns - 1},$startOffsetY)',
                           ),
-                          width: (cellSize * grid.columns) - Spaces.spaceL,
-                          height: (cellSize * grid.rows) - Spaces.spaceL,
-                          child: CustomPaint(
-                            painter: GridPaint(
-                              rows: grid.visibleRows,
-                              columns: grid.visibleColumns,
-                              startOffset: startOffset,
-                              obstacles: roverCPBloc.obstacles,
-                              rover: rover,
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(DirectionType.W.name),
+                          Container(
+                            margin: const EdgeInsets.all(
+                              Spaces.spaceXXS,
+                            ),
+                            width: (cellSize * grid.columns) - Spaces.spaceL,
+                            height: (cellSize * grid.rows) - Spaces.spaceL,
+                            child: CustomPaint(
+                              painter: GridPaint(
+                                rows: grid.visibleRows,
+                                columns: grid.visibleColumns,
+                                startOffset: startOffset,
+                                obstacles: roverCPBloc.obstacles,
+                                rover: rover,
+                              ),
                             ),
                           ),
+                          Text(DirectionType.E.name),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            '($startOffsetX,${startOffsetY + grid.visibleRows - 1})',
+                          ),
+                          Text(DirectionType.S.name),
+                          Text(
+                            '(${startOffsetX + grid.visibleColumns - 1},${startOffsetY + grid.visibleRows - 1})',
+                          ),
+                        ],
+                      ),
+                    ] else
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Spaces.spaceXXS,
                         ),
-                        Text(DirectionType.E.name),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          '(${startOffset.dx},${startOffset.dy + roverCPBloc.grid.visibleRows - 1})',
+                        child: Text(
+                          _Strings.errorLoadGrid,
+                          style: CustomTextStyle.paragraphMbold.copyWith(
+                            color: Colors.red,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        Text(DirectionType.S.name),
-                        Text(
-                          '(${startOffset.dx + roverCPBloc.grid.visibleColumns - 1},${startOffset.dy + roverCPBloc.grid.visibleRows - 1})',
-                        ),
-                      ],
-                    ),
+                      ),
                   ],
                 ),
               ),

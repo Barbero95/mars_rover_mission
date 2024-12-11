@@ -21,6 +21,10 @@ class _Strings {
   static const waitingNewCommandsTitle = 'Awaiting Commands';
   static const waitingNewCommandsContent =
       'Rover is ready and waiting for new instructions.';
+  static const noMoreZoomIn = "Can't zoom in any further";
+  static const noMoreZoomOut = "Can't zoom out any further";
+  static const noMoreMaxZoomIn = 'Already at maximum zoom in';
+  static const noMoreMaxZoomOut = 'Already at maximum zoom out';
 }
 
 class RoverControlPanelBloc {
@@ -138,15 +142,51 @@ class RoverControlPanelBloc {
         nextPosition.y >= _grid.rows;
   }
 
-  void zoomIn() {
+  void zoomIn(BuildContext context) {
     _screenState.value = ScreenState.loading;
-    _grid.zoomIn();
+    final success = _grid.zoomIn();
+    if (!success) {
+      ModalUtils.errorModal(
+        context: context,
+        description: _Strings.noMoreZoomIn,
+      );
+    }
     _screenState.value = ScreenState.idle;
   }
 
-  void zoomOut() {
+  void zoomOut(BuildContext context) {
     _screenState.value = ScreenState.loading;
-    _grid.zoomOut();
+    final success = _grid.zoomOut();
+    if (!success) {
+      ModalUtils.errorModal(
+        context: context,
+        description: _Strings.noMoreZoomOut,
+      );
+    }
+    _screenState.value = ScreenState.idle;
+  }
+
+  void maxZoomIn(BuildContext context) {
+    _screenState.value = ScreenState.loading;
+    final success = _grid.maxZoomIn();
+    if (!success) {
+      ModalUtils.errorModal(
+        context: context,
+        description: _Strings.noMoreMaxZoomIn,
+      );
+    }
+    _screenState.value = ScreenState.idle;
+  }
+
+  void maxZoomOut(BuildContext context) {
+    _screenState.value = ScreenState.loading;
+    final success = _grid.maxZoomOut();
+    if (!success) {
+      ModalUtils.errorModal(
+        context: context,
+        description: _Strings.noMoreMaxZoomOut,
+      );
+    }
     _screenState.value = ScreenState.idle;
   }
 

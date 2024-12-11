@@ -43,36 +43,16 @@ class HeaderWidget extends StatelessWidget {
               ),
               icon: const Icon(Icons.edit),
             ),
-            FilledButton(
-              onPressed: () => roverCPBloc.enabledExecuteCommandsButton
-                  ? roverCPBloc.processCommands(context)
-                  : roverCPBloc.pauseProcessComands(),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    roverCPBloc.enabledExecuteCommandsButton
-                        ? Icons.play_arrow
-                        : Icons.pause,
-                  ),
-                  Spaces.horizontalXXS(),
-                  Text(
-                    roverCPBloc.enabledExecuteCommandsButton
-                        ? _Strings.start
-                        : _Strings.pause,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
-        Spaces.verticalXXS(),
         Text(
           '${_Strings.roverPositionLabel}: ${roverCPBloc.rover.currentPosition}',
+          style: CustomTextStyle.paragraphMdefault,
         ),
         Spaces.verticalXXXS(),
         Text(
           '${_Strings.roverDirectionLabel}: ${roverCPBloc.rover.currentDirection.name}',
+          style: CustomTextStyle.paragraphMdefault,
         ),
         Spaces.verticalXXXS(),
         Text(
@@ -81,6 +61,29 @@ class HeaderWidget extends StatelessWidget {
             [
               '(${roverCPBloc.grid.columns},${roverCPBloc.grid.rows})',
               '(${roverCPBloc.grid.visibleColumns},${roverCPBloc.grid.visibleRows})',
+            ],
+          ),
+          style: CustomTextStyle.paragraphMdefault,
+        ),
+        Spaces.verticalXXXS(),
+        FilledButton(
+          onPressed: () => roverCPBloc.enabledExecuteCommandsButton
+              ? roverCPBloc.processCommands(context)
+              : roverCPBloc.pauseProcessComands(),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                roverCPBloc.enabledExecuteCommandsButton
+                    ? Icons.play_arrow
+                    : Icons.pause,
+              ),
+              Spaces.horizontalXXS(),
+              Text(
+                roverCPBloc.enabledExecuteCommandsButton
+                    ? _Strings.start
+                    : _Strings.pause,
+              ),
             ],
           ),
         ),

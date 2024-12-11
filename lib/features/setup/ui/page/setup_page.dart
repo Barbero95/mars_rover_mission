@@ -10,7 +10,7 @@ class _Constants {
 }
 
 class _Strings {
-  static const title = 'Setup Page';
+  static const title = 'Setup';
   static const gridTitle = 'Grid:';
   static const rowsLabel = 'Rows';
   static const columnsLabel = 'Columns';
@@ -48,7 +48,7 @@ class _SetupPageState extends State<SetupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(_Strings.title),
+        title: Text(locator<EnvironmentService>().appName),
       ),
       body: Column(
         children: [
@@ -60,6 +60,11 @@ class _SetupPageState extends State<SetupPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Text(
+                      _Strings.title,
+                      style: CustomTextStyle.titleM,
+                    ),
+                    Spaces.verticalXS(),
                     Text(
                       _Strings.gridTitle,
                       style: CustomTextStyle.paragraphLsemibold,

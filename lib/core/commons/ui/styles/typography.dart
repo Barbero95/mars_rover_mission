@@ -118,7 +118,6 @@ class CustomTextStyle {
   /// Roboto, w400 (regular), s16
   static TextStyle paragraphLdefault = paragraphXLdefault.copyWith(
     fontSize: CustomFontSize.s16,
-    // height: YuLineHeight.h24,
   );
 
   /// Roboto, w600 (semibold), s16
@@ -134,7 +133,6 @@ class CustomTextStyle {
   /// Roboto, w400 (regular), s14
   static TextStyle paragraphMdefault = paragraphXLdefault.copyWith(
     fontSize: CustomFontSize.s14,
-    // height: YuLineHeight.h20,
   );
 
   /// Roboto, w600 (semibold), s14
@@ -150,7 +148,6 @@ class CustomTextStyle {
   /// Roboto, w400 (regular), s13
   static TextStyle paragraphSdefault = paragraphXLdefault.copyWith(
     fontSize: CustomFontSize.s13,
-    // height: YuLineHeight.h18,
   );
 
   /// Roboto, w600 (semibold), s13
@@ -174,7 +171,6 @@ class CustomTextStyle {
     fontFamily: CustomFontFamily.roboto,
     fontWeight: CustomFontWeight.semibold,
     fontSize: CustomFontSize.s16,
-    // height: YuLineHeight.h24,
     letterSpacing: CustomLetterSpacing.ls10,
   );
 

@@ -33,7 +33,6 @@ class CustomModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: CustomColors.secondary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           _Constants.borderRadius,
@@ -73,34 +72,26 @@ class CustomModal extends StatelessWidget {
   }
 
   Widget get _titleWidget => title != null
-      ? Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: ListTile(
-                titleAlignment: ListTileTitleAlignment.titleHeight,
-                horizontalTitleGap: Spaces.spaceXXS,
-                title: Text(
-                  title!,
-                ),
-                leading: titleIcon != null
-                    ? Icon(
-                        titleIcon,
-                        color: Colors.black,
-                      )
-                    : null,
-                contentPadding: const EdgeInsets.all(
-                  Spaces.spaceXXXS,
-                ),
-              ),
-            ),
-          ],
+      ? ListTile(
+          titleAlignment: ListTileTitleAlignment.titleHeight,
+          horizontalTitleGap: Spaces.spaceXXS,
+          title: Text(
+            title!,
+          ),
+          leading: titleIcon != null
+              ? Icon(
+                  titleIcon,
+                  color: Colors.black,
+                )
+              : null,
+          contentPadding: const EdgeInsets.all(
+            Spaces.spaceXXXS,
+          ),
         )
       : const SizedBox.shrink();
 
   Widget _buildTitle(BuildContext context) {
-    if (!barrierDismissible) {
+    if (barrierDismissible) {
       return _titleWidget;
     }
     return Row(

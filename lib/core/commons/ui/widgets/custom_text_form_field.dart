@@ -38,7 +38,7 @@ class CustomTextFormField extends StatelessWidget {
             TextCapitalization.none
           ),
         TextFormFieldType.command => (
-            TextInputType.number,
+            TextInputType.text,
             [
               UpperCaseTextInputFormatter(),
               FilteringTextInputFormatter.allow(
