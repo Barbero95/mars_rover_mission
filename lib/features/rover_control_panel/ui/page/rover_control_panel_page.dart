@@ -59,6 +59,8 @@ class _RoverControlPanelPageState extends State<RoverControlPanelPage> {
                 roverCPBloc: _roverCPBloc,
               ),
               Spaces.verticalS(),
+              const PackageInfoWidget(),
+              Spaces.verticalXXS(),
             ],
           );
         },

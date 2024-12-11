@@ -50,81 +50,90 @@ class _SetupPageState extends State<SetupPage> {
       appBar: AppBar(
         title: const Text(_Strings.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(Spaces.spaceXS),
-        child: Form(
-          key: _setupBloc.formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _Strings.gridTitle,
-                style: CustomTextStyle.paragraphLsemibold,
-              ),
-              Spaces.verticalXS(),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomTextFormField(
-                      controller: _setupBloc.rowsTE,
-                      label: _Strings.rowsLabel,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(Spaces.spaceXS),
+              child: Form(
+                key: _setupBloc.formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _Strings.gridTitle,
+                      style: CustomTextStyle.paragraphLsemibold,
+                    ),
+                    Spaces.verticalXS(),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: CustomTextFormField(
+                            controller: _setupBloc.rowsTE,
+                            label: _Strings.rowsLabel,
+                            type: TextFormFieldType.number,
+                            maxLength: _Constants.numMaxLength,
+                          ),
+                        ),
+                        Spaces.horizontalXS(),
+                        Expanded(
+                          child: CustomTextFormField(
+                            controller: _setupBloc.columnsTE,
+                            label: _Strings.columnsLabel,
+                            type: TextFormFieldType.number,
+                            maxLength: _Constants.numMaxLength,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spaces.verticalXXS(),
+                    Text(
+                      _Strings.obstaclesTitle,
+                      style: CustomTextStyle.paragraphLsemibold,
+                    ),
+                    Spaces.verticalXS(),
+                    CustomTextFormField(
+                      controller: _setupBloc.numberOfObstaclesTE,
+                      label: _Strings.obstaclesLabel,
                       type: TextFormFieldType.number,
                       maxLength: _Constants.numMaxLength,
                     ),
-                  ),
-                  Spaces.horizontalXS(),
-                  Expanded(
-                    child: CustomTextFormField(
-                      controller: _setupBloc.columnsTE,
-                      label: _Strings.columnsLabel,
-                      type: TextFormFieldType.number,
-                      maxLength: _Constants.numMaxLength,
+                    Spaces.verticalXXS(),
+                    Text(
+                      '${_Strings.commandsTitle}:',
+                      style: CustomTextStyle.paragraphLsemibold,
                     ),
-                  ),
-                ],
-              ),
-              Spaces.verticalXXS(),
-              Text(
-                _Strings.obstaclesTitle,
-                style: CustomTextStyle.paragraphLsemibold,
-              ),
-              Spaces.verticalXS(),
-              CustomTextFormField(
-                controller: _setupBloc.numberOfObstaclesTE,
-                label: _Strings.obstaclesLabel,
-                type: TextFormFieldType.number,
-                maxLength: _Constants.numMaxLength,
-              ),
-              Spaces.verticalXXS(),
-              Text(
-                '${_Strings.commandsTitle}:',
-                style: CustomTextStyle.paragraphLsemibold,
-              ),
-              Spaces.verticalXS(),
-              CustomTextFormField(
-                controller: _setupBloc.commandsTE,
-                label: _Strings.commandsTitle,
-                type: TextFormFieldType.command,
-                maxLength: _Constants.commandsMaxLength,
-              ),
-              const CustomInfoWidget(
-                text: _Strings.forwardInfo,
-              ),
-              const CustomInfoWidget(
-                text: _Strings.turnInfo,
-              ),
-              Spaces.verticalS(),
-              Center(
-                child: FilledButton(
-                  onPressed: () => _setupBloc.navigateToPanelControl(context),
-                  child: const Text(
-                    _Strings.navigationButton,
-                  ),
+                    Spaces.verticalXS(),
+                    CustomTextFormField(
+                      controller: _setupBloc.commandsTE,
+                      label: _Strings.commandsTitle,
+                      type: TextFormFieldType.command,
+                      maxLength: _Constants.commandsMaxLength,
+                    ),
+                    const CustomInfoWidget(
+                      text: _Strings.forwardInfo,
+                    ),
+                    const CustomInfoWidget(
+                      text: _Strings.turnInfo,
+                    ),
+                    Spaces.verticalS(),
+                    Center(
+                      child: FilledButton(
+                        onPressed: () =>
+                            _setupBloc.navigateToPanelControl(context),
+                        child: const Text(
+                          _Strings.navigationButton,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+          const Center(child: PackageInfoWidget()),
+          Spaces.verticalXXS(),
+        ],
       ),
     );
   }
