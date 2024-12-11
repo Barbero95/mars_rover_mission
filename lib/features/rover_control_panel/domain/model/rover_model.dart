@@ -30,9 +30,10 @@ class RoverModel {
   }
 
   void moveForward(PositionModel nextPosition) {
-    currentPosition
-      ..x = nextPosition.x
-      ..y = nextPosition.y;
+    currentPosition = currentPosition.copyWith(
+      x: nextPosition.x,
+      y: nextPosition.y,
+    );
   }
 
   void turnLeft() {

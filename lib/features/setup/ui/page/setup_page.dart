@@ -74,7 +74,7 @@ class _SetupPageState extends State<SetupPage> {
             ElevatedButton(
               onPressed: () => _setupBloc.navigateToPanelControl(context),
               child: const Text('Go to Panel Control'),
-            )
+            ),
           ],
         ),
       ),

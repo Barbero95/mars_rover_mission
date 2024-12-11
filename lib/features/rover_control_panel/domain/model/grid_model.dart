@@ -44,10 +44,10 @@ class GridModel {
   Offset startOffset(PositionModel currentPosition) {
     final startX = (currentPosition.x - (visibleColumns / 2))
         .clamp(0, columns - visibleColumns)
-        .toDouble();
+        .roundToDouble();
     final startY = (currentPosition.y - (visibleRows / 2))
         .clamp(0, rows - visibleRows)
-        .toDouble();
+        .roundToDouble();
     return Offset(startX, startY);
   }
 }

@@ -37,21 +37,18 @@ class RoverControlPanelBloc {
 
   void _generateObstacles(int numberOfObstacles) {
     final random = Random();
-    _obstacles = List.generate(
-      numberOfObstacles,
-      (_) {
-        int x = random.nextInt(_grid.columns);
-        int y = random.nextInt(_grid.rows);
-        while (x != rover.currentPosition.x && y != rover.currentPosition.y) {
-          x = random.nextInt(_grid.columns);
-          y = random.nextInt(_grid.rows);
-        }
-        return PositionModel(
-          x: x,
-          y: y,
-        );
-      },
-    );
+    final Set<PositionModel> obstacles = {};
+    while (obstacles.length < numberOfObstacles) {
+      final newObstacle = PositionModel(
+        x: random.nextInt(_grid.columns),
+        y: random.nextInt(_grid.rows),
+      );
+
+      if (newObstacle != rover.currentPosition) {
+        obstacles.add(newObstacle);
+      }
+    }
+    _obstacles = obstacles.toList();
   }
 
   void pauseProcessComands() {
