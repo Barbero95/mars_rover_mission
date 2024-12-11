@@ -8,7 +8,6 @@ class _Strings {
   static const commandsLabel = 'Commands';
   static const start = 'Start';
   static const pause = 'Pause';
-  static const edit = 'Edit';
   static const roverPositionLabel = 'Rover position';
   static const roverDirectionLabel = 'Rover direction';
   static const gridLabel = 'Grid: %s, ZoomGrid: %s';
@@ -30,9 +29,10 @@ class HeaderWidget extends StatelessWidget {
           runSpacing: Spaces.spaceXXS,
           spacing: Spaces.spaceXXS,
           crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.center,
           children: [
             Text('${_Strings.commandsLabel}: ${roverCPBloc.commandsJoin}'),
-            FilledButton(
+            IconButton(
               onPressed: () => ModalUtils.editCommandsModal(
                 context: context,
                 commands: roverCPBloc.commandsString,
@@ -41,16 +41,7 @@ class HeaderWidget extends StatelessWidget {
                   newCommands: newCommands,
                 ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.edit),
-                  Spaces.horizontalXXS(),
-                  const Text(
-                    _Strings.edit,
-                  ),
-                ],
-              ),
+              icon: const Icon(Icons.edit),
             ),
             FilledButton(
               onPressed: () => roverCPBloc.enabledExecuteCommandsButton
@@ -75,7 +66,7 @@ class HeaderWidget extends StatelessWidget {
             ),
           ],
         ),
-        Spaces.verticalXXXS(),
+        Spaces.verticalXXS(),
         Text(
           '${_Strings.roverPositionLabel}: ${roverCPBloc.rover.currentPosition}',
         ),
