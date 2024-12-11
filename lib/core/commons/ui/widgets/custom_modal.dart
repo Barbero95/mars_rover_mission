@@ -53,25 +53,20 @@ class CustomModal extends StatelessWidget {
       actions: [
         if (secondaryButtonLabel != null)
           TextButton(
-            child: Text(
-              secondaryButtonLabel!,
-            ),
             onPressed: () {
               onPressedSecondaryButton?.call();
               if (context.canPop()) {
                 context.pop();
               }
             },
+            child: Text(
+              secondaryButtonLabel!,
+            ),
           ),
         if (primaryButtonLabel != null)
           FilledButton(
+            onPressed: onPressedPrimaryButton,
             child: Text(primaryButtonLabel!),
-            onPressed: () {
-              onPressedPrimaryButton?.call();
-              if (context.canPop()) {
-                context.pop();
-              }
-            },
           ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/core/commons/domain/export_domain.dart';
 import 'package:mars_rover_mission/core/utils/modal_utils.dart';
@@ -15,6 +16,11 @@ class _Strings {
   static const outOfBoundsError = 'Out-of-bounds movement:';
   static const obstacleDetectError =
       'Obstacle detected at %s.\nPlease enter the new commands to continue.';
+  static const editCommandsError =
+      'Sorry. An error occurred while processing the new commands. Please try again.';
+  static const waitingNewCommandsTitle = 'Awaiting Commands';
+  static const waitingNewCommandsContent =
+      'Rover is ready and waiting for new instructions.';
 }
 
 class RoverControlPanelBloc {
@@ -33,8 +39,8 @@ class RoverControlPanelBloc {
   List<PositionModel> get obstacles => _obstacles;
 
   bool get enabledExecuteCommandsButton => _executeCommandsTimer == null;
-  String get commandsString =>
-      _commands.map((command) => command.name).join(',');
+  String get commandsString => _commands.map((command) => command.name).join();
+  String get commandsJoin => _commands.map((command) => command.name).join(',');
 
   void init(RoverControlPanelExtra extra) {
     _rover = extra.rover;
@@ -113,6 +119,15 @@ class RoverControlPanelBloc {
       _commands.removeAt(0);
       _rover.moveForward(nextPosition);
       _screenState.value = ScreenState.idle;
+      if (_commands.isEmpty) {
+        ModalUtils.basicModal(
+          context: context,
+          title: _Strings.waitingNewCommandsTitle,
+          content: const Text(
+            _Strings.waitingNewCommandsContent,
+          ),
+        );
+      }
     });
   }
 
@@ -132,6 +147,29 @@ class RoverControlPanelBloc {
   void zoomOut() {
     _screenState.value = ScreenState.loading;
     _grid.zoomOut();
+    _screenState.value = ScreenState.idle;
+  }
+
+  void editCommands({
+    required BuildContext context,
+    required String newCommands,
+  }) {
+    _screenState.value = ScreenState.loading;
+    final newCommandsParsed = newCommands.trim().split('').map(
+          CommandType.fromText,
+        );
+    if (newCommandsParsed.any((command) => command == null)) {
+      ModalUtils.errorModal(
+        context: context,
+        description: _Strings.editCommandsError,
+      );
+    } else {
+      _commands
+        ..clear()
+        ..addAll(
+          newCommandsParsed.whereNotNull().toList(),
+        );
+    }
     _screenState.value = ScreenState.idle;
   }
 }

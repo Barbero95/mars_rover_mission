@@ -3,6 +3,11 @@ import 'package:mars_rover_mission/core/commons/services/export_services.dart';
 import 'package:mars_rover_mission/core/commons/ui/export_ui.dart';
 import 'package:mars_rover_mission/features/rover_control_panel/export_rover_control_panel.dart';
 
+class _Strings {
+  static const title = 'Rover Control Panel';
+  static const screenStateError = 'Ups! We have lost connection with the rover';
+}
+
 class RoverControlPanelPage extends StatefulWidget {
   final RoverControlPanelExtra extra;
 
@@ -31,7 +36,7 @@ class _RoverControlPanelPageState extends State<RoverControlPanelPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rover Control Panel'),
+        title: const Text(_Strings.title),
       ),
       body: ValueListenableBuilder(
         valueListenable: _roverCPBloc.screenState,
@@ -39,7 +44,7 @@ class _RoverControlPanelPageState extends State<RoverControlPanelPage> {
           if (screenState.isError) {
             return const Center(
               child: Text(
-                'Ups! We have lost connection with the rover',
+                _Strings.screenStateError,
               ),
             );
           }
