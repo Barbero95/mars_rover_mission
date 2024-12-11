@@ -48,3 +48,4 @@ lib/core/commons/services/translation/generated/
 
 # Firebase
 .firebaserc
+.firebase/
