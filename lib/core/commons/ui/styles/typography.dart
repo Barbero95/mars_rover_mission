@@ -48,7 +48,7 @@ class CustomFontFamily {
   static const String roboto = 'Roboto';
 }
 
-class CystomTextStyle {
+class CustomTextStyle {
   // D I S P L A Y
   /// Georgia, w600 (semibold), s60
   static TextStyle displayXXL = const TextStyle(

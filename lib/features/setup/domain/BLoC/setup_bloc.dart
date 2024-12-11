@@ -9,7 +9,7 @@ import 'package:mars_rover_mission/features/rover_control_panel/export_rover_con
 class _Constants {
   static const defaultGrid = 200;
   static const defaultCommands = 'FFRRFFFRL';
-  static const defaultNumberOfObstacles = 10;
+  static const defaultNumberOfObstacles = 100;
 }
 
 class _Strings {

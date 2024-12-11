@@ -86,19 +86,19 @@ class GridPaint extends CustomPainter {
       final roverPath = Path();
       switch (rover.currentDirection) {
         case DirectionType.N:
-          roverPath.moveTo(roverX, roverY - cellHeight / 2);
+          roverPath.moveTo(roverX, roverY - cellHeight / 3);
           roverPath.lineTo(roverX - cellWidth / 3, roverY + cellHeight / 3);
           roverPath.lineTo(roverX + cellWidth / 3, roverY + cellHeight / 3);
         case DirectionType.S:
-          roverPath.moveTo(roverX, roverY + cellHeight / 2);
+          roverPath.moveTo(roverX, roverY + cellHeight / 3);
           roverPath.lineTo(roverX - cellWidth / 3, roverY - cellHeight / 3);
           roverPath.lineTo(roverX + cellWidth / 3, roverY - cellHeight / 3);
         case DirectionType.E:
-          roverPath.moveTo(roverX + cellWidth / 2, roverY);
+          roverPath.moveTo(roverX + cellWidth / 3, roverY);
           roverPath.lineTo(roverX - cellWidth / 3, roverY - cellHeight / 3);
           roverPath.lineTo(roverX - cellWidth / 3, roverY + cellHeight / 3);
         case DirectionType.W:
-          roverPath.moveTo(roverX - cellWidth / 2, roverY);
+          roverPath.moveTo(roverX - cellWidth / 3, roverY);
           roverPath.lineTo(roverX + cellWidth / 3, roverY - cellHeight / 3);
           roverPath.lineTo(roverX + cellWidth / 3, roverY + cellHeight / 3);
       }

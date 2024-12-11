@@ -5,10 +5,6 @@ import 'package:mars_rover_mission/core/commons/ui/export_ui.dart';
 import 'package:mars_rover_mission/features/setup/domain/export_domain.dart';
 
 class _Constants {
-  static const sectionTS = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-  );
   static const numMaxLength = 5;
   static const commandsMaxLength = 50;
 }
@@ -61,9 +57,9 @@ class _SetupPageState extends State<SetupPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 _Strings.gridTitle,
-                style: _Constants.sectionTS,
+                style: CustomTextStyle.paragraphLsemibold,
               ),
               Spaces.verticalXS(),
               Row(
@@ -88,9 +84,9 @@ class _SetupPageState extends State<SetupPage> {
                 ],
               ),
               Spaces.verticalXXS(),
-              const Text(
+              Text(
                 _Strings.obstaclesTitle,
-                style: _Constants.sectionTS,
+                style: CustomTextStyle.paragraphLsemibold,
               ),
               Spaces.verticalXS(),
               CustomTextFormField(
@@ -100,9 +96,9 @@ class _SetupPageState extends State<SetupPage> {
                 maxLength: _Constants.numMaxLength,
               ),
               Spaces.verticalXXS(),
-              const Text(
+              Text(
                 '${_Strings.commandsTitle}:',
-                style: _Constants.sectionTS,
+                style: CustomTextStyle.paragraphLsemibold,
               ),
               Spaces.verticalXS(),
               CustomTextFormField(
