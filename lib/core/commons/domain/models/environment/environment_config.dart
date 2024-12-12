@@ -1,12 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:mars_rover_mission/core/commons/domain/models/environment/environment.dart';
 
 class EnvironmentConfig {
   /// Type of flavor
   final Environment? environment;
-
-  /// Color of the banner
-  final Color color;
 
   /// Variables are dynamic
   final Map<String, dynamic> values;
@@ -14,12 +10,10 @@ class EnvironmentConfig {
   /// Factory constructor
   factory EnvironmentConfig({
     Environment? environment,
-    Color color = Colors.red, // TODO(david): change to apptheme primaryColor
     Map<String, dynamic> variables = const {},
   }) {
     _instance = EnvironmentConfig._internal(
       environment,
-      color,
       variables,
     );
 
@@ -29,7 +23,6 @@ class EnvironmentConfig {
   /// Private constructor
   EnvironmentConfig._internal(
     this.environment,
-    this.color,
     this.values,
   );
 

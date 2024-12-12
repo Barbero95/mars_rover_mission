@@ -32,6 +32,7 @@ class AppState extends State<App> {
       valueListenable: locator<AppBloc>().themeModel,
       builder: (context, themeModel, child) {
         return MaterialApp.router(
+          title: locator<EnvironmentService>().appName,
           themeMode: themeModel.themeMode,
           theme: AppTheme.lightTheme(themeModel),
           darkTheme: AppTheme.darkTheme(themeModel),

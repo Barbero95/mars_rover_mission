@@ -11,4 +11,8 @@ class EnvironmentService {
 
   bool get isRelease => kReleaseMode;
   bool get isDebug => kDebugMode;
+
+  String get appName =>
+      getValue(EnvKeys.appName) as String? ??
+      'Error get ${EnvKeys.appName.name}';
 }

@@ -45,3 +45,7 @@ app.*.map.json
 # Translations
 lib/core/commons/services/translation/l10n/
 lib/core/commons/services/translation/generated/
+
+# Firebase
+.firebaserc
+.firebase/
